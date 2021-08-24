@@ -5,24 +5,19 @@
                                                    android:layout_height="match_parent" android:background="#202735"
                                                    android:id="@+id/clGameCanvas">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/user_pong" android:id="@+id/ivUserPong"
-            app:layout_constraintBottom_toTopOf="@+id/glBot" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/bot_pong" android:id="@+id/ivBotPong"
-            app:layout_constraintTop_toTopOf="@+id/glTop" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
     <TextView
-            android:text="123"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/idScore"
-            android:textSize="80sp" android:fontFamily="@font/roboto_black"
-            android:textColor="#4D525E" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/glTop"
-            app:layout_constraintBottom_toTopOf="@+id/glBot" app:layout_constraintVertical_bias="0.234"/>
+        android:id="@+id/idScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_black"
+        android:text="0"
+        android:textColor="#4D525E"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/glBot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glTop"
+        app:layout_constraintVertical_bias="0.234" />
     <androidx.constraintlayout.widget.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -32,10 +27,4 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/glBot"
             app:layout_constraintGuide_percent="0.97"/>
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/pong_ball" android:id="@+id/ivBall"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/glTop"
-            app:layout_constraintBottom_toTopOf="@+id/glBot"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
