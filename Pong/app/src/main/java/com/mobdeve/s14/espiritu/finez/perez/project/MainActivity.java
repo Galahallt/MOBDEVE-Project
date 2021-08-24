@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameCanvas.class));
+                startActivity(new Intent(MainActivity.this, GameActivity.class));
             }
         });
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameSettings.class));
+                startActivity(new Intent(MainActivity.this, Settings.class));
             }
         });
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         lbBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameLeaderboard.class));
+                startActivity(new Intent(MainActivity.this, Leaderboard.class));
             }
         });
     }

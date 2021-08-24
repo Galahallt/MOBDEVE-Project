@@ -13,10 +13,10 @@ public class Ball {
     private Paint paint;
 
     public Ball (int radius, Paint paint) {
-        this.radius = 25;
+        this.radius = radius;
         this.paint = paint;
-        this.vel_x = 15.0f;
-        this.vel_y = 15.0f;
+        this.vel_x = GameCanvas.BALL_SPEED;
+        this.vel_y = GameCanvas.BALL_SPEED;
     }
 
     public void draw (Canvas canvas) {
