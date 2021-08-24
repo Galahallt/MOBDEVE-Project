@@ -11,7 +11,7 @@
             app:srcCompat="@drawable/arrow"
             app:backgroundTint="#363D49"
             app:tint="#9B9FA4"
-            android:id="@+id/ibLeaderboardsBack2"
+            android:id="@+id/ibProfileBack"
             android:adjustViewBounds="true"
             android:padding="12dp" android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"

@@ -64,7 +64,7 @@
             app:srcCompat="@drawable/settings"
             app:backgroundTint="#363D49"
             app:tint="#9B9FA4"
-            android:id="@+id/imageButton"
+            android:id="@+id/ibSettings"
             android:adjustViewBounds="true"
             android:padding="12dp" android:scaleType="fitCenter" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toTopOf="@+id/glTopPong"

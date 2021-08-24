@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".GameCanvas"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".GameProfile"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".GameSettings"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".GameLeaderboard"
+            android:label="@string/app_name">
+        </activity>
         <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
     </application>
 
