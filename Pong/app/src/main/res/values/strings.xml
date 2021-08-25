@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Pong</string>
+
+    <string name="init">READY?</string>
+    <string name="winner">YOU WIN!</string>
+    <string name="loser">YOU LOSE!</string>
+    <string name="paused">PAUSED</string>
 </resources>
