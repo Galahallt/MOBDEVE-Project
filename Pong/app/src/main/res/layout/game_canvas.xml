@@ -4,9 +4,8 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
-                                                   android:background="#202735"
                                                    android:id="@+id/clGameCanvas"
-                                                   tools:context=".GameActivity">
+                                                   tools:context=".GameActivity" android:background="#202735">
 
     <com.mobdeve.s14.espiritu.finez.perez.project.GameCanvas
             android:id="@+id/gameCanvas"
@@ -31,11 +30,11 @@
             android:text="READY?"
             android:textColor="#4D525E"
             android:textSize="80sp"
-            app:layout_constraintBottom_toTopOf="@+id/glBot"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvScore"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvScore" android:layout_marginTop="172dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gameCanvas" app:layout_constraintVertical_bias="0.21"/>
     <TextView
             android:id="@+id/tvScore"
             android:layout_width="wrap_content"
@@ -46,16 +45,7 @@
             android:textSize="80sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/glTop"
-            android:layout_marginTop="144dp" app:layout_constraintHorizontal_bias="0.498"/>
+            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintTop_toTopOf="@+id/gameCanvas"
+            android:layout_marginTop="148dp"/>
 
-    <androidx.constraintlayout.widget.Guideline
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/glTop" app:layout_constraintGuide_percent="0.03"/>
-    <androidx.constraintlayout.widget.Guideline
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/glBot"
-            app:layout_constraintGuide_percent="0.97"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

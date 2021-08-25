@@ -107,6 +107,9 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
         canvasWidth = width;
         canvasHeight = height;
+
+        System.out.println("Width: " + canvasWidth);
+        System.out.println("Height: " + canvasHeight);
         gameController.setNewRound();
     }
 
@@ -148,10 +151,10 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void botPlayer() {
-        if (oPaddle.bounds.top > gBall.cy) {
-            playerMove(oPaddle, oPaddle.bounds.left, oPaddle.bounds.top - PADDLE_SPEED);
-        } else if (oPaddle.bounds.top + oPaddle.getPaddleHeight() < gBall.cy) {
-            playerMove(oPaddle, oPaddle.bounds.left, oPaddle.bounds.top + PADDLE_SPEED);
+        if (oPaddle.bounds.left > gBall.cx) {
+            playerMove(oPaddle, oPaddle.bounds.left - PADDLE_SPEED, oPaddle.bounds.top);
+        } else if (oPaddle.bounds.left + oPaddle.getPaddleHeight() < gBall.cx) {
+            playerMove(oPaddle, oPaddle.bounds.left + PADDLE_SPEED, oPaddle.bounds.top);
         }
     }
 
@@ -160,12 +163,12 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
             handleCollision(pPaddle, gBall);
         } else if (collisionPlayer(oPaddle, gBall)) {
             handleCollision(oPaddle, gBall);
-        } else if (collisionTopBottom()) {
-            gBall.vel_y = -gBall.vel_y;
-        } else if (collisionLeft()) {
+        } else if (collisionLeftRight()) {
+            gBall.vel_x = -gBall.vel_x;
+        } else if (collisionBottom()) {
             gameController.setState(GameController.STATE_LOSE);
             return;
-        } else if (collisionRight()) {
+        } else if (collisionTop()) {
             gameController.setState(GameController.STATE_WIN);
             return;
         }
@@ -180,30 +183,30 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     public boolean collisionPlayer(Player paddle, Ball gBall) {
         return paddle.bounds.intersects (
                 gBall.cx - gBall.getRadius(),
-                gBall.cy - gBall.getRadius(),
+                gBall.cy + gBall.getRadius(),
                 gBall.cx + gBall.getRadius(),
-                gBall.cy + gBall.getRadius()
+                gBall.cy - gBall.getRadius()
         );
     }
 
-    private boolean collisionTopBottom() {
-        return ((gBall.cy <= gBall.getRadius()) || (gBall.cy + gBall.getRadius() >= canvasHeight - 1));
+    private boolean collisionLeftRight() {
+        return ((gBall.cx <= gBall.getRadius()) || (gBall.cx + gBall.getRadius() >= canvasWidth - 1));
     }
 
-    private boolean collisionLeft() {
-        return gBall.cx <= gBall.getRadius();
+    private boolean collisionTop() {
+        return gBall.cy <= gBall.getRadius();
     }
 
-    private boolean collisionRight() {
-        return gBall.cx + gBall.getRadius() >= canvasWidth - 1;
+    private boolean collisionBottom() {
+        return gBall.cy + gBall.getRadius() >= canvasHeight - 1;
     }
 
     private void handleCollision(Player paddle, Ball gBall) {
-        gBall.vel_x = -gBall.vel_x * 1.05f;
+        gBall.vel_y = -gBall.vel_y * 1.05f;
         if (paddle == pPaddle) {
-            gBall.cx = pPaddle.bounds.right + gBall.getRadius();
+            gBall.cy = pPaddle.bounds.top + gBall.getRadius();
         } else if (paddle == oPaddle) {
-            gBall.cx = oPaddle.bounds.left - gBall.getRadius();
+            gBall.cy = oPaddle.bounds.bottom - gBall.getRadius();
             PADDLE_SPEED = PADDLE_SPEED * 1.05f;
         }
     }
@@ -218,17 +221,17 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
                     } else {
                         if (touchedPaddle(event, pPaddle)) {
                             move = true;
-                            lastTouch = event.getY();
+                            lastTouch = event.getX();
                         }
                     }
                     break;
 
                 case MotionEvent.ACTION_MOVE:
                     if (move) {
-                        float y = event.getY();
-                        float dy = y - lastTouch;
-                        lastTouch = y;
-                        movePaddle(dy, pPaddle);
+                        float x = event.getX();
+                        float dx = x - lastTouch;
+                        lastTouch = x;
+                        movePaddle(dx, pPaddle);
                     }
                     break;
 
@@ -255,26 +258,26 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
         return gameController;
     }
 
-    public void movePaddle(float dy, Player paddle) {
+    public void movePaddle(float dx, Player paddle) {
         synchronized (sHolder) {
-            playerMove(paddle, paddle.bounds.left, paddle.bounds.top + dy);
+            playerMove(paddle, paddle.bounds.left + dx, paddle.bounds.top);
         }
     }
 
     public synchronized void playerMove(Player paddle, float left, float top) {
-        if (left < 2) {
-            left = 2;
-        } else if (left + paddle.getPaddleWidth() >= canvasWidth - 2){
-            left = canvasWidth - paddle.getPaddleWidth() - 2;
+        if (left < 0) {
+            left = 0;
+        } else if (left + paddle.getPaddleHeight() >= canvasWidth){
+            left = canvasWidth - paddle.getPaddleHeight() - 1;
         }
 
-        if (top < 0) {
-            top = 0;
-        } else if (top + paddle.getPaddleHeight() >= canvasHeight){
-            top = canvasHeight - paddle.getPaddleHeight() - 1;
+        if (top < 2) {
+            top = 2;
+        } else if (top + paddle.getPaddleWidth() >= canvasWidth - 2){
+            top = canvasHeight - paddle.getPaddleWidth() - 2;
         }
 
-        paddle.bounds.offsetTo(left,top);
+        paddle.bounds.offsetTo(left, top);
     }
 
     public void setupCanvas() {
@@ -290,8 +293,8 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void setPaddles() {
-        pPaddle.bounds.offsetTo(2, (canvasHeight - pPaddle.getPaddleHeight()) / 2);
-        oPaddle.bounds.offsetTo(canvasWidth - oPaddle.getPaddleWidth() - 2, (canvasHeight - oPaddle.getPaddleHeight()) / 2);
+        pPaddle.bounds.offsetTo((canvasWidth - pPaddle.getPaddleHeight()) / 2, canvasHeight - pPaddle.getPaddleWidth() - 2);
+        oPaddle.bounds.offsetTo((canvasWidth - oPaddle.getPaddleHeight()) / 2, 2);
     }
 
     public void setScore (TextView view) {

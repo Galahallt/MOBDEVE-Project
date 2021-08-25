@@ -14,7 +14,7 @@ public class Player {
         this.paddleWidth = paddleWidth;
         this.paddleHeight = paddleHeight;
         this.paint = paint;
-        bounds = new RectF(0, 0, paddleWidth, paddleHeight);
+        bounds = new RectF(0, 0, paddleHeight, paddleWidth);
     }
 
     public void draw (Canvas canvas) { canvas.drawRoundRect(bounds, 5, 5, paint); }

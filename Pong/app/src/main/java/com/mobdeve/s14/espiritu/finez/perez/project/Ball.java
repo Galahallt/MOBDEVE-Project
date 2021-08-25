@@ -27,10 +27,10 @@ public class Ball {
         cx += vel_x;
         cy += vel_y;
 
-        if (cy < radius) {
-            cy = radius;
-        } else if (cy + radius >= canvas.getHeight()) {
-            cy = canvas.getHeight() - radius - 1;
+        if (cx < radius) {
+            cx = radius;
+        } else if (cx + radius >= canvas.getWidth()) {
+            cx = canvas.getWidth() - radius - 1;
         }
     }
 
