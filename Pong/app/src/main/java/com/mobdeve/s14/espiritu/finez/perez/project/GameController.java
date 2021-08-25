@@ -14,8 +14,8 @@ public class GameController extends Thread {
     public static final int STATE_READY = 0;
     public static final int STATE_PAUSED = 1;
     public static final int STATE_RUNNING = 2;
-    public static final int STATE_LOSE = 3;
-    public static final int STATE_WIN = 4;
+    public static final int STATE_WIN = 3;
+    public static final int STATE_LOSE = 4;
 
     private boolean vSensorOn;
 
@@ -87,14 +87,16 @@ public class GameController extends Thread {
             switch (gameState) {
                 case STATE_READY:
                     setNewRound();
-                    break;
-
-                case STATE_PAUSED:
-                    setStatus(r.getString(R.string.paused));
-                    break;
+                break;
 
                 case STATE_RUNNING:
                     hideStatus();
+                break;
+
+                case STATE_WIN:
+                    setStatus(r.getString(R.string.winner));
+                    gameCanvas.score++;
+                    setNewRound();
                     break;
 
                 case STATE_LOSE:
@@ -102,10 +104,8 @@ public class GameController extends Thread {
                     setNewRound();
                     break;
 
-                case STATE_WIN:
-                    setStatus(r.getString(R.string.winner));
-                    gameCanvas.score++;
-                    setNewRound();
+                case STATE_PAUSED:
+                    setStatus(r.getString(R.string.paused));
                     break;
             }
         }
@@ -151,7 +151,7 @@ public class GameController extends Thread {
     public void setScore(String gScore) {
         Message msg = statHandler.obtainMessage();
         Bundle bund = new Bundle();
-        bund.putString("game", gScore);
+        bund.putString("score", gScore);
         msg.setData(bund);
         scorHandler.sendMessage(msg);
     }

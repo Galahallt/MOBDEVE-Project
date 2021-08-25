@@ -104,14 +104,14 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
         canvasWidth = width;
         canvasHeight = height;
         gameController.setNewRound();
     }
 
     @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         boolean retry = true;
         gameController.setRun(false);
         while (retry) {
@@ -187,7 +187,7 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private boolean collisionTopBottom() {
-        return ((gBall.cy <= gBall.getRadius()) || (gBall.cy + gBall.getRadius() >= canvasHeight -1));
+        return ((gBall.cy <= gBall.getRadius()) || (gBall.cy + gBall.getRadius() >= canvasHeight - 1));
     }
 
     private boolean collisionLeft() {
@@ -264,7 +264,7 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     public synchronized void playerMove(Player paddle, float left, float top) {
         if (left < 2) {
             left = 2;
-        } else if (left + paddle.getPaddleWidth() >= canvasWidth -2){
+        } else if (left + paddle.getPaddleWidth() >= canvasWidth - 2){
             left = canvasWidth - paddle.getPaddleWidth() - 2;
         }
 

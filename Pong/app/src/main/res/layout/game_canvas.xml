@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent" android:background="#202735"
-                                                   android:id="@+id/clGameCanvas">
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="#202735"
+                                                   android:id="@+id/clGameCanvas"
+                                                   tools:context=".GameActivity">
 
     <com.mobdeve.s14.espiritu.finez.perez.project.GameCanvas
             android:id="@+id/gameCanvas"
@@ -18,36 +21,33 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:background="#202735"/>
-    <TextView
-        android:id="@+id/tvScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_black"
-        android:text="0"
-        android:textColor="#4D525E"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/glBot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glTop"
-        app:layout_constraintVertical_bias="0.234" />
+            app:layout_constraintVertical_bias="1.0"/>
 
     <TextView
-        android:id="@+id/tvStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_black"
-        android:text="READY?"
-        android:textColor="#4D525E"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/glBot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glTop"
-        app:layout_constraintVertical_bias="0.793" />
+            android:id="@+id/tvStat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_black"
+            android:text="READY?"
+            android:textColor="#4D525E"
+            android:textSize="80sp"
+            app:layout_constraintBottom_toTopOf="@+id/glBot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvScore"/>
+    <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_black"
+            android:text="0"
+            android:textColor="#4D525E"
+            android:textSize="80sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glTop"
+            android:layout_marginTop="144dp" app:layout_constraintHorizontal_bias="0.498"/>
 
     <androidx.constraintlayout.widget.Guideline
             android:orientation="horizontal"
