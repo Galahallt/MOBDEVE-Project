@@ -201,7 +201,7 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     private void handleCollision(Player paddle, Ball gBall) {
         gBall.vel_x = -gBall.vel_x * 1.05f;
         if (paddle == pPaddle) {
-            gBall.cx = pPaddle.bounds.right = gBall.getRadius();
+            gBall.cx = pPaddle.bounds.right + gBall.getRadius();
         } else if (paddle == oPaddle) {
             gBall.cx = oPaddle.bounds.left - gBall.getRadius();
             PADDLE_SPEED = PADDLE_SPEED * 1.05f;
