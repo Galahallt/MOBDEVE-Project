@@ -43,16 +43,6 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     private boolean move = false;
     private float lastTouch;
 
-    public GameCanvas(Context cont, AttributeSet attr) {
-        super(cont, attr);
-        initGameCanvas(cont, attr);
-    }
-
-    public GameCanvas(Context cont, AttributeSet attr, int styleAttr) {
-        super(cont, attr, styleAttr);
-        initGameCanvas(cont, attr);
-    }
-
     public void initGameCanvas(Context cont, AttributeSet attr) {
         context = cont;
         sHolder = getHolder();
@@ -108,20 +98,20 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void surfaceCreated(@NonNull SurfaceHolder holder) {
+    public void surfaceCreated(SurfaceHolder holder) {
         gameController.setRun(true);
         gameController.start();
     }
 
     @Override
-    public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         canvasWidth = width;
         canvasHeight = height;
         gameController.setNewRound();
     }
 
     @Override
-    public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+    public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
         gameController.setRun(false);
         while (retry) {
@@ -147,28 +137,22 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
         gBall.draw(canvas);
     }
 
+    public GameCanvas(Context cont, AttributeSet attr) {
+        super(cont, attr);
+        initGameCanvas(cont, attr);
+    }
+
+    public GameCanvas(Context cont, AttributeSet attr, int styleAttr) {
+        super(cont, attr, styleAttr);
+        initGameCanvas(cont, attr);
+    }
+
     private void botPlayer() {
         if (oPaddle.bounds.top > gBall.cy) {
             playerMove(oPaddle, oPaddle.bounds.left, oPaddle.bounds.top - PADDLE_SPEED);
         } else if (oPaddle.bounds.top + oPaddle.getPaddleHeight() < gBall.cy) {
             playerMove(oPaddle, oPaddle.bounds.left, oPaddle.bounds.top + PADDLE_SPEED);
         }
-    }
-
-    public synchronized void playerMove(Player paddle, float left, float top) {
-        if (left < 2) {
-            left = 2;
-        } else if (left + paddle.getPaddleWidth() >= canvasWidth -2){
-            left = canvasWidth - paddle.getPaddleWidth() - 2;
-        }
-
-        if (top < 0) {
-            top = 0;
-        } else if (top + paddle.getPaddleHeight() >= canvasHeight){
-            top = canvasHeight - paddle.getPaddleHeight() - 1;
-        }
-
-        paddle.bounds.offsetTo(left,top);
     }
 
     public void update(Canvas canvas) {
@@ -234,7 +218,6 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
                     } else {
                         if (touchedPaddle(event, pPaddle)) {
                             move = true;
-
                             lastTouch = event.getY();
                         }
                     }
@@ -276,6 +259,22 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
         synchronized (sHolder) {
             playerMove(paddle, paddle.bounds.left, paddle.bounds.top + dy);
         }
+    }
+
+    public synchronized void playerMove(Player paddle, float left, float top) {
+        if (left < 2) {
+            left = 2;
+        } else if (left + paddle.getPaddleWidth() >= canvasWidth -2){
+            left = canvasWidth - paddle.getPaddleWidth() - 2;
+        }
+
+        if (top < 0) {
+            top = 0;
+        } else if (top + paddle.getPaddleHeight() >= canvasHeight){
+            top = canvasHeight - paddle.getPaddleHeight() - 1;
+        }
+
+        paddle.bounds.offsetTo(left,top);
     }
 
     public void setupCanvas() {

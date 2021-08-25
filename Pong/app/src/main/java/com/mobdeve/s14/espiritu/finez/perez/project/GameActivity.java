@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
+    GameController gc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,6 @@ public class GameActivity extends AppCompatActivity {
         canvas.setScore((TextView)findViewById(R.id.tvScore));
         canvas.setStatus((TextView)findViewById(R.id.tvStat));
 
-        GameController gameController = canvas.getGameController();
+        gc = canvas.getGameController();
     }
 }

@@ -10,7 +10,7 @@ import android.os.SystemClock;
 import android.view.SurfaceHolder;
 import android.view.View;
 
-public class GameController extends  Thread {
+public class GameController extends Thread {
     public static final int STATE_READY = 0;
     public static final int STATE_PAUSED = 1;
     public static final int STATE_RUNNING = 2;
@@ -70,10 +70,10 @@ public class GameController extends  Thread {
         }
 
         nextTick += skips;
-        long sleep = nextTick - SystemClock.uptimeMillis();
-        if (sleep > 0) {
+        long sleepT = nextTick - SystemClock.uptimeMillis();
+        if (sleepT > 0) {
             try {
-                Thread.sleep(sleep);
+                Thread.sleep(sleepT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -99,7 +99,6 @@ public class GameController extends  Thread {
 
                 case STATE_LOSE:
                     setStatus(r.getString(R.string.loser));
-                    gameCanvas.score--;
                     setNewRound();
                     break;
 
