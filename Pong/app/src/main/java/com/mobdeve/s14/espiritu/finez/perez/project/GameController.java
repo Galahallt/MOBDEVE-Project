@@ -31,6 +31,8 @@ public class GameController extends Thread {
 
     private static final int FPS = 60;
 
+    private GameActivity gameAct;
+
     public GameController(Context cont, SurfaceHolder sHolder, GameCanvas gameCanvas, Handler statHandler, Handler scorHandler) {
         this.cont = cont;
         this.sHolder = sHolder;
@@ -101,7 +103,7 @@ public class GameController extends Thread {
 
                 case STATE_LOSE:
                     setStatus(r.getString(R.string.noob));
-                    setNewRound();
+                    gameAct.gOver();
                     break;
 
                 case STATE_PAUSED:
@@ -109,6 +111,10 @@ public class GameController extends Thread {
                     break;
             }
         }
+    }
+
+    public void setGameAct(GameActivity gAct) {
+        this.gameAct = gAct;
     }
 
     public void setNewRound() {

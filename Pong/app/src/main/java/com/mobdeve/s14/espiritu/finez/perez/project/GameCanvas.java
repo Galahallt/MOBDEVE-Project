@@ -254,7 +254,8 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
         return paddle.bounds.contains(event.getX(), event.getY());
     }
 
-    public GameController getGameController() {
+    public GameController getGameController(GameActivity gAct) {
+        gameController.setGameAct(gAct);
         return gameController;
     }
 
