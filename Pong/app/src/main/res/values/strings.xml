@@ -2,7 +2,7 @@
     <string name="app_name">Pong</string>
 
     <string name="init">READY?</string>
-    <string name="winner">YOU WIN!</string>
-    <string name="loser">YOU LOSE!</string>
+    <string name="nice">NICE!</string>
+    <string name="noob">IT\'S OVER!</string>
     <string name="paused">PAUSED</string>
 </resources>

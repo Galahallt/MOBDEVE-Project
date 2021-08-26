@@ -94,13 +94,13 @@ public class GameController extends Thread {
                 break;
 
                 case STATE_WIN:
-                    setStatus(r.getString(R.string.winner));
+                    setStatus(r.getString(R.string.nice));
                     gameCanvas.score++;
                     setNewRound();
                     break;
 
                 case STATE_LOSE:
-                    setStatus(r.getString(R.string.loser));
+                    setStatus(r.getString(R.string.noob));
                     setNewRound();
                     break;
 

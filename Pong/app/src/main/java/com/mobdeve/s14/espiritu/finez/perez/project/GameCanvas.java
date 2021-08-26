@@ -183,9 +183,9 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     public boolean collisionPlayer(Player paddle, Ball gBall) {
         return paddle.bounds.intersects (
                 gBall.cx - gBall.getRadius(),
-                gBall.cy + gBall.getRadius(),
+                gBall.cy - gBall.getRadius(),
                 gBall.cx + gBall.getRadius(),
-                gBall.cy - gBall.getRadius()
+                gBall.cy + gBall.getRadius()
         );
     }
 
@@ -204,9 +204,9 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     private void handleCollision(Player paddle, Ball gBall) {
         gBall.vel_y = -gBall.vel_y * 1.05f;
         if (paddle == pPaddle) {
-            gBall.cy = pPaddle.bounds.top + gBall.getRadius();
+            gBall.cy = pPaddle.bounds.top - gBall.getRadius();
         } else if (paddle == oPaddle) {
-            gBall.cy = oPaddle.bounds.bottom - gBall.getRadius();
+            gBall.cy = oPaddle.bounds.bottom + gBall.getRadius();
             PADDLE_SPEED = PADDLE_SPEED * 1.05f;
         }
     }
