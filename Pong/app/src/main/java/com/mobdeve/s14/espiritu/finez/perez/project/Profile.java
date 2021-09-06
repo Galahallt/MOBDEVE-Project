@@ -49,9 +49,9 @@ public class Profile extends AppCompatActivity {
                 String user = etUsername.getText().toString().trim();
                 String pass = etPassword.getText().toString().trim();
 
-                ArrayList<ProfileModel> profList = dbHelper.checkExisting(user);
+                ProfileModel profile = dbHelper.checkExisting(user);
 
-                if (!profList.isEmpty()) {
+                if (profile != null) {
                     tvPrompt.setText(user + " already exists.");
                     tvPrompt.setTextColor(Color.YELLOW);
                 } else {
@@ -71,16 +71,19 @@ public class Profile extends AppCompatActivity {
                 String user = etUsername.getText().toString().trim();
                 String pass = etPassword.getText().toString().trim();
 
-                ArrayList<ProfileModel> profList = dbHelper.checkExisting(user);
+                ProfileModel profile = dbHelper.checkExisting(user);
 
-                if (!profList.isEmpty()) {
-                    if (profList.get(0).getPassword().equals(pass)) {
+                if (profile != null) {
+                    if (profile.getPassword().equals(pass)) {
                         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         spEditor = sp.edit();
                         spEditor.putString(KEYS.USER_STRING.name(), user);
                         spEditor.putString(KEYS.PASS_STRING.name(), pass);
                         tvPrompt.setTextColor(Color.GREEN);
                         tvPrompt.setText(user + " has successfully logged in!");
+                    } else {
+                        tvPrompt.setTextColor(Color.YELLOW);
+                        tvPrompt.setText("Invalid login credentials.");
                     }
                 } else {
                     tvPrompt.setTextColor(Color.YELLOW);

@@ -5,10 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.mobdeve.s14.espiritu.finez.perez.project.Profile;
-
-import java.util.ArrayList;
-
 public class ProfileDAOSQLImpl implements ProfileDAO {
     private SQLiteDatabase database;
     private ProfileDatabase profileDatabase;
@@ -31,17 +27,15 @@ public class ProfileDAOSQLImpl implements ProfileDAO {
         return result != -1;
     }
 
-    public ArrayList<ProfileModel> checkExisting (String username) {
+    public ProfileModel checkExisting (String username) {
         String query = "SELECT * FROM " + ProfileDatabase.PROFILE_TABLE + " WHERE " + ProfileDatabase.PROFILE_USERNAME + "=\"" + username + "\"";
         Cursor cursor = profileDatabase.getReadableDatabase().rawQuery(query, null);
 
-        ArrayList<ProfileModel> profList = new ArrayList<>();
         cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            profList.add(new ProfileModel(cursor.getString(1), cursor.getString(2)));
-            cursor.moveToNext();
+        if (cursor.getCount() > 0) {
+            return new ProfileModel(cursor.getString(1), cursor.getString(2));
+        } else {
+            return null;
         }
-
-        return profList;
     }
 }
