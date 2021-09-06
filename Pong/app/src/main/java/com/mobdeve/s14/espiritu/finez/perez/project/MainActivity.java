@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileDAOSQLImpl;
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ScoreModel;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

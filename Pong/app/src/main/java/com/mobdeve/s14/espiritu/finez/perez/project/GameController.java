@@ -10,6 +10,9 @@ import android.os.SystemClock;
 import android.view.SurfaceHolder;
 import android.view.View;
 
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileDAOSQLImpl;
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ScoreModel;
+
 public class GameController extends Thread {
     public static final int STATE_READY = 0;
     public static final int STATE_PAUSED = 1;

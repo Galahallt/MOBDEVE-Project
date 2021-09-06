@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileDAOSQLImpl;
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ScoreModel;
+
 public class GameActivity extends AppCompatActivity {
     GameController gc;
 
@@ -23,6 +26,10 @@ public class GameActivity extends AppCompatActivity {
         canvas.setStatus((TextView)findViewById(R.id.tvStat));
 
         gc = canvas.getGameController(this);
+
+        if (Over.ov != null) {
+            Over.ov.finish();
+        }
     }
 
     public void gOver() {

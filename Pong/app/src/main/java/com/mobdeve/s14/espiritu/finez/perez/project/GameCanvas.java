@@ -17,6 +17,9 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileDAOSQLImpl;
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.ScoreModel;
+
 public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     private GameController gameController;
     private TextView tvStatus;
