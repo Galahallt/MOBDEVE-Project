@@ -42,34 +42,26 @@
             app:layout_constraintTop_toBottomOf="@+id/tvProfile" android:layout_marginTop="96dp"/>
 
     <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="240dp"
-        android:backgroundTint="#363D49"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrompt"
-        app:layout_constraintVertical_bias="1.0" />
-
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#363D49"
+            android:text="Register"
+            app:layout_constraintStart_toStartOf="@+id/etPassword"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrompt"
+            app:layout_constraintVertical_bias="0.044" app:layout_constraintBottom_toTopOf="@+id/ibProfileBack"/>
     <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="240dp"
-        android:backgroundTint="#363D49"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrompt"
-        app:layout_constraintVertical_bias="1.0" />
-
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:backgroundTint="#363D49"
+            android:text="Login"
+            app:layout_constraintEnd_toEndOf="@+id/etPassword"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btnRegister"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrompt"
+            app:layout_constraintVertical_bias="0.044" app:layout_constraintBottom_toTopOf="@+id/ibProfileBack"/>
     <TextView
             android:text="Profile"
             android:layout_width="wrap_content"
