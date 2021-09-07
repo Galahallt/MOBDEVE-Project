@@ -6,10 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
 public class PongDAOSQLImpl implements PongDAO {
-    private SQLiteDatabase database;
     private ProfileDatabase profileDatabase;
     private ScoreDatabase scoreDatabase;
 
