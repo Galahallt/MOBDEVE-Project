@@ -3,7 +3,9 @@ package com.mobdeve.s14.espiritu.finez.perez.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,6 +13,8 @@ import android.widget.ImageButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Settings extends AppCompatActivity {
+    private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +34,12 @@ public class Settings extends AppCompatActivity {
         userBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                startActivity(new Intent(Settings.this, Profile.class));
+                sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                if (sp.getString(KEYS.USER_STRING.name(), null) == null) {
+                    startActivity(new Intent(Settings.this, Profile.class));
+                } else {
+                    startActivity(new Intent(Settings.this, LBProfile.class));
+                }
             }
         });
 

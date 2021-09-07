@@ -2,9 +2,11 @@ package com.mobdeve.s14.espiritu.finez.perez.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
@@ -79,8 +81,19 @@ public class Profile extends AppCompatActivity {
                         spEditor = sp.edit();
                         spEditor.putString(KEYS.USER_STRING.name(), user);
                         spEditor.putString(KEYS.PASS_STRING.name(), pass);
+                        spEditor.apply();
+
                         tvPrompt.setTextColor(Color.GREEN);
                         tvPrompt.setText(user + " has successfully logged in!");
+
+                        new CountDownTimer(1000, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                            }
+                            public void onFinish() {
+                                finish();
+                                startActivity(new Intent(Profile.this, LBProfile.class));
+                            }
+                        }.start();
                     } else {
                         tvPrompt.setTextColor(Color.YELLOW);
                         tvPrompt.setText("Invalid login credentials.");
