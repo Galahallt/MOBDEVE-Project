@@ -10,20 +10,30 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.PongDAOSQLImpl;
+
 public class LBProfile extends AppCompatActivity {
     private SharedPreferences sp;
     private SharedPreferences.Editor spEditor;
+
+    private PongDAOSQLImpl dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leaderboards_profile);
 
+        this.dbHelper = new PongDAOSQLImpl(this);
+
         // Set user
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         TextView user = (TextView)findViewById(R.id.tvProfileUsername);
         String username = sp.getString(KEYS.USER_STRING.name(), "username");
         user.setText(username + "'s Page");
+
+        // Set user scores
+        TextView gameCount = (TextView)findViewById(R.id.tvTotalGames);
+        gameCount.setText(Integer.toString(dbHelper.getTotalGames(username)));
 
         // Back to previous page
         ImageButton ibBack = (ImageButton)findViewById(R.id.ibLbProfileBack);

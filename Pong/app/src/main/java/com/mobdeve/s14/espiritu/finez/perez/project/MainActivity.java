@@ -2,18 +2,20 @@ package com.mobdeve.s14.espiritu.finez.perez.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
-
-import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileDAOSQLImpl;
-import com.mobdeve.s14.espiritu.finez.perez.project.dao.ScoreModel;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
+    private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,22 @@ public class MainActivity extends AppCompatActivity {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameActivity.class));
+                sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                TextView check = (TextView)findViewById(R.id.tvLoginCheck);
+                if (sp.getString(KEYS.USER_STRING.name(), null) == null) {
+                    check.setText("You must log in before playing.");
+                    check.setVisibility(View.VISIBLE);
+                    new CountDownTimer(1000, 1000) {
+                        public void onTick(long millisUntilFinished) {
+                        }
+                        public void onFinish() {
+                            check.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(MainActivity.this, Profile.class));
+                        }
+                    }.start();
+                } else {
+                    startActivity(new Intent(MainActivity.this, GameActivity.class));
+                }
             }
         });
 

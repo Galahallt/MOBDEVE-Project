@@ -14,11 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileDAOSQLImpl;
+import com.mobdeve.s14.espiritu.finez.perez.project.dao.PongDAOSQLImpl;
 import com.mobdeve.s14.espiritu.finez.perez.project.dao.ProfileModel;
-
-import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
     private EditText etUsername;
@@ -28,7 +25,7 @@ public class Profile extends AppCompatActivity {
     private Button btnRegister;
     private Button btnLogin;
 
-    private ProfileDAOSQLImpl dbHelper;
+    private PongDAOSQLImpl dbHelper;
 
     private SharedPreferences sp;
     private SharedPreferences.Editor spEditor;
@@ -38,7 +35,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
-        this.dbHelper = new ProfileDAOSQLImpl(this);
+        this.dbHelper = new PongDAOSQLImpl(this);
         this.tvPrompt = findViewById(R.id.tvPrompt);
 
         // Register profile
