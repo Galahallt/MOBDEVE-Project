@@ -30,7 +30,6 @@ public class Over extends AppCompatActivity {
         TextView curScore = (TextView)findViewById(R.id.tvYourScore);
         curScore.setText("Your score: " + score);
 
-
         // Replay
         ImageButton replayBtn = (ImageButton)findViewById(R.id.ibRetry);
         replayBtn.setOnClickListener(new View.OnClickListener() {
