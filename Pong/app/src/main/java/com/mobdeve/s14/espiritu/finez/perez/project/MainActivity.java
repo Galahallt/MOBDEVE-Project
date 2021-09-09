@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -16,10 +17,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp;
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Play main music
+        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.gamemusic);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         // Action to play the game
         FloatingActionButton playBtn = (FloatingActionButton)findViewById(R.id.fabPlay);
@@ -40,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }.start();
                 } else {
+                    mediaPlayer.pause();
                     startActivity(new Intent(MainActivity.this, GameActivity.class));
                 }
             }
@@ -62,5 +71,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Leaderboard.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mediaPlayer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 }

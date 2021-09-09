@@ -20,7 +20,6 @@ public class LBProfileAdapter extends RecyclerView.Adapter<LBProfileAdapter.View
         private TextView tvItemDate;
         private TextView tvItemScore;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             tvItemDate = itemView.findViewById(R.id.tvGameItemDate);

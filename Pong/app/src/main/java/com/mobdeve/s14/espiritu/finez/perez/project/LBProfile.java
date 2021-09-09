@@ -53,6 +53,7 @@ public class LBProfile extends AppCompatActivity {
         RecyclerView hist = (RecyclerView)findViewById(R.id.rvHistory);
         hist.setLayoutManager(new LinearLayoutManager(this));
         hist.setAdapter(this.lbProfAdapter);
+
         data = dbHelper.getAllUserScores(username);
         this.lbProfAdapter.setData(data);
 

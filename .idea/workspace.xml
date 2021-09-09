@@ -68,9 +68,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1630997029558" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1630997040805">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1631181888710">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1630997040805" />
+    <state x="740" y="278" key="FileChooserDialogImpl/1920.0.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1631181888710" />
   </component>
 </project>

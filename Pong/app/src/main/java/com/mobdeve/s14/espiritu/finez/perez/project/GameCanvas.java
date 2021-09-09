@@ -19,6 +19,8 @@ import java.util.Random;
 
 public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     private GameController gameController;
+    private Sounds sounds;
+
     private TextView tvStatus;
     private TextView tvScore;
 
@@ -160,15 +162,20 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update(Canvas canvas) {
         if (collisionPlayer(pPaddle, gBall)) {
+            sounds.playPaddle();
             handleCollision(pPaddle, gBall);
         } else if (collisionPlayer(oPaddle, gBall)) {
+            sounds.playPaddle();
             handleCollision(oPaddle, gBall);
         } else if (collisionLeftRight()) {
+            sounds.playWall();
             gBall.vel_x = -gBall.vel_x;
         } else if (collisionBottom()) {
+            sounds.playEnd();
             gameController.setState(GameController.STATE_LOSE);
             return;
         } else if (collisionTop()) {
+            sounds.playEnd();
             gameController.setState(GameController.STATE_WIN);
             return;
         }
@@ -282,6 +289,7 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void setupCanvas() {
+        sounds = new Sounds(context);
         setBall();
         setPaddles();
     }
