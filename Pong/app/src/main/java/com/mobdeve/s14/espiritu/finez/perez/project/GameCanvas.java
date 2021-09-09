@@ -166,20 +166,30 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update(Canvas canvas) {
         if (collisionPlayer(pPaddle, gBall)) {
-            sounds.playPaddle();
+            if (sp.getBoolean(KEYS.SFX_KEY.name(), false)) {
+                sounds.playPaddle();
+            }
             handleCollision(pPaddle, gBall);
         } else if (collisionPlayer(oPaddle, gBall)) {
-            sounds.playPaddle();
+            if (sp.getBoolean(KEYS.SFX_KEY.name(), false)) {
+                sounds.playPaddle();
+            }
             handleCollision(oPaddle, gBall);
         } else if (collisionLeftRight()) {
-            sounds.playWall();
+            if (sp.getBoolean(KEYS.SFX_KEY.name(), false)) {
+                sounds.playWall();
+            }
             gBall.vel_x = -gBall.vel_x;
         } else if (collisionBottom()) {
-            sounds.playEnd();
+            if (sp.getBoolean(KEYS.SFX_KEY.name(), false)) {
+                sounds.playEnd();
+            }
             gameController.setState(GameController.STATE_LOSE);
             return;
         } else if (collisionTop()) {
-            sounds.playEnd();
+            if (sp.getBoolean(KEYS.SFX_KEY.name(), false)) {
+                sounds.playEnd();
+            }
             gameController.setState(GameController.STATE_WIN);
             return;
         }
@@ -294,7 +304,7 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     public void setupCanvas() {
         sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sp.getBoolean(KEYS.BGM_KEY.name(), false))
+        if (sp.getBoolean(KEYS.SFX_KEY.name(), false))
             sounds = new Sounds(context);
         setBall();
         setPaddles();

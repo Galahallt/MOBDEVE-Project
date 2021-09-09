@@ -1,5 +1,6 @@
 package com.mobdeve.s14.espiritu.finez.perez.project;
 
+import android.media.MediaPlayer;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,9 +26,6 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-
-        this.sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        this.spEditor = this.sp.edit();
 
         this.switchSFX = findViewById(R.id.sSFX);
         this.switchBGM = findViewById(R.id.sBGM);
@@ -62,6 +60,7 @@ public class Settings extends AppCompatActivity {
         bExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
+                saveData();
                 moveTaskToBack(true);
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(1);
@@ -71,32 +70,51 @@ public class Settings extends AppCompatActivity {
         switchBGM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                {
+                if (isChecked) {
                     // turn on sounds
+                    Sounds.mediaPlayer = MediaPlayer.create(Settings.this, R.raw.gamemusic);
+                    Sounds.mediaPlayer.setLooping(true);
                     Sounds.mediaPlayer.start();
-                }
-                else {
+                } else {
                     // turn off sounds
                     Sounds.mediaPlayer.stop();
                     Sounds.mediaPlayer.release();
                 }
+                saveData();
+            }
+        });
+
+        switchSFX.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                saveData();
             }
         });
     }
 
     // save sound configurations in shared preferences
     private void saveData() {
-        this.spEditor.putBoolean(KEYS.SFX_KEY.name(), this.switchSFX.isChecked());
-        this.spEditor.putBoolean(KEYS.BGM_KEY.name(), this.switchBGM.isChecked());
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        spEditor = sp.edit();
 
-        this.spEditor.apply();
+        spEditor.putBoolean(KEYS.SFX_KEY.name(), this.switchSFX.isChecked());
+        spEditor.putBoolean(KEYS.BGM_KEY.name(), this.switchBGM.isChecked());
+
+        spEditor.apply();
     }
 
     // load sound configurations in shared preferences
     private void loadData() {
-        this.switchSFX.setChecked(this.sp.getBoolean(KEYS.SFX_KEY.name(), false));
-        this.switchBGM.setChecked(this.sp.getBoolean(KEYS.BGM_KEY.name(), false));
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        switchSFX.setChecked(sp.getBoolean(KEYS.SFX_KEY.name(), false));
+        switchBGM.setChecked(sp.getBoolean(KEYS.BGM_KEY.name(), false));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.loadData();
     }
 
     @Override
@@ -108,6 +126,12 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        this.saveData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         this.saveData();
     }
 }
