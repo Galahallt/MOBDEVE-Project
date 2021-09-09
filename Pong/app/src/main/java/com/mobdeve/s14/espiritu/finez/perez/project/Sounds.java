@@ -2,6 +2,7 @@ package com.mobdeve.s14.espiritu.finez.perez.project;
 
 import android.content.Context;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 
 public class Sounds {
@@ -9,6 +10,8 @@ public class Sounds {
     private static int wallHit;
     private static int paddleHit;
     private static int endSound;
+
+    public static MediaPlayer mediaPlayer;
 
     public Sounds(Context context) {
         soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);

@@ -56,7 +56,7 @@
             android:fontFamily="@font/roboto" android:textSize="32sp"
             android:textColor="#FFFFFF" app:layout_constraintTop_toBottomOf="@+id/tvSettings"
             android:layout_marginTop="44dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" android:checked="true"/>
     <Switch
             android:text="BGM"
             android:layout_width="135dp"
@@ -64,5 +64,5 @@
             android:fontFamily="@font/roboto" android:textSize="32sp"
             android:textColor="#FFFFFF" app:layout_constraintTop_toBottomOf="@+id/sSFX"
             android:layout_marginTop="40dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" android:checked="true"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

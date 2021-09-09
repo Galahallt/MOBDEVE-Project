@@ -1,5 +1,7 @@
 package com.mobdeve.s14.espiritu.finez.perez.project;
 
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,11 +16,23 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Settings extends AppCompatActivity {
     private SharedPreferences sp;
+    private SharedPreferences.Editor spEditor;
+
+    private Switch switchSFX;
+    private Switch switchBGM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+
+        this.sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        this.spEditor = this.sp.edit();
+
+        this.switchSFX = findViewById(R.id.sSFX);
+        this.switchBGM = findViewById(R.id.sBGM);
+
+        loadData();
 
         // Go back to main screen
         ImageButton setBackBtn = (ImageButton)findViewById(R.id.ibSettingsBack);
@@ -53,5 +67,47 @@ public class Settings extends AppCompatActivity {
                 System.exit(1);
             }
         });
+
+        switchBGM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    // turn on sounds
+                    Sounds.mediaPlayer.start();
+                }
+                else {
+                    // turn off sounds
+                    Sounds.mediaPlayer.stop();
+                    Sounds.mediaPlayer.release();
+                }
+            }
+        });
+    }
+
+    // save sound configurations in shared preferences
+    private void saveData() {
+        this.spEditor.putBoolean(KEYS.SFX_KEY.name(), this.switchSFX.isChecked());
+        this.spEditor.putBoolean(KEYS.BGM_KEY.name(), this.switchBGM.isChecked());
+
+        this.spEditor.apply();
+    }
+
+    // load sound configurations in shared preferences
+    private void loadData() {
+        this.switchSFX.setChecked(this.sp.getBoolean(KEYS.SFX_KEY.name(), false));
+        this.switchBGM.setChecked(this.sp.getBoolean(KEYS.BGM_KEY.name(), false));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.saveData();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.saveData();
     }
 }

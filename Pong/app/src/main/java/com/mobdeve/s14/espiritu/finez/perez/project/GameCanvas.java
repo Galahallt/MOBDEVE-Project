@@ -1,8 +1,10 @@
 package com.mobdeve.s14.espiritu.finez.perez.project;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
@@ -44,6 +46,8 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     private boolean move = false;
     private float lastTouch;
+
+    private SharedPreferences sp;
 
     public void initGameCanvas(Context cont, AttributeSet attr) {
         context = cont;
@@ -289,7 +293,9 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void setupCanvas() {
-        sounds = new Sounds(context);
+        sp = PreferenceManager.getDefaultSharedPreferences(context);
+        if (sp.getBoolean(KEYS.BGM_KEY.name(), false))
+            sounds = new Sounds(context);
         setBall();
         setPaddles();
     }
@@ -312,17 +318,5 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     public void setStatus(TextView view) {
         tvStatus = view;
-    }
-
-    public Player getPPaddle() {
-        return pPaddle;
-    }
-
-    public Player getOPaddle() {
-        return oPaddle;
-    }
-
-    public Ball getBall() {
-        return gBall;
     }
 }

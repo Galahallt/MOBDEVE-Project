@@ -16,18 +16,32 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp;
+    private SharedPreferences.Editor spEditor;
 
-    private MediaPlayer mediaPlayer;
-
+    private Sounds sounds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize current state of buttons
+        spEditor = sp.edit();
+        spEditor.putBoolean(KEYS.BGM_KEY.name(), true);
+        spEditor.putBoolean(KEYS.SFX_KEY.name(), true);
+        spEditor.apply();
+
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         // Play main music
-        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.gamemusic);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        if (sp.getBoolean(KEYS.BGM_KEY.name(), false)) {
+//            mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.gamemusic);
+//            mediaPlayer.setLooping(true);
+//            mediaPlayer.start();
+            Sounds.mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.gamemusic);
+            Sounds.mediaPlayer.setLooping(true);
+            Sounds.mediaPlayer.start();
+        }
+
 
         // Action to play the game
         FloatingActionButton playBtn = (FloatingActionButton)findViewById(R.id.fabPlay);
@@ -48,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }.start();
                 } else {
-                    mediaPlayer.pause();
+                    // mediaPlayer.pause();
+                    Sounds.mediaPlayer.pause();
                     startActivity(new Intent(MainActivity.this, GameActivity.class));
                 }
             }
@@ -76,18 +91,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mediaPlayer.start();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
+        // mediaPlayer.start();
+        Sounds.mediaPlayer.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mediaPlayer.stop();
-        mediaPlayer.release();
+//        mediaPlayer.stop();
+//        mediaPlayer.release();
+        Sounds.mediaPlayer.stop();
+        Sounds.mediaPlayer.release();
     }
 }
