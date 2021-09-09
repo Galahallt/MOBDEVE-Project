@@ -51,12 +51,13 @@ public class GameActivity extends AppCompatActivity {
         int score = canvas.score;
         String user = sp.getString(KEYS.USER_STRING.name(), "username");
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss");
         Date date = new Date();
 
         spEditor = sp.edit();
         spEditor.putInt(KEYS.SCORE_STRING.name(), score);
         spEditor.apply();
 
-        dbHelper.addScore(new ScoreModel(user, score, format.format(date)));
+        dbHelper.addScore(new ScoreModel(user, score, format.format(date), format2.format(date)));
     }
 }

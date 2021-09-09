@@ -15,13 +15,15 @@ public class ScoreDatabase extends SQLiteOpenHelper {
     public static final String SCORE_USERNAME = "score_username";
     public static final String SCORE_SCORE = "score_score";
     public static final String SCORE_DATESCORE = "score_datescore";
+    public static final String SCORE_TIME = "score_time";
 
     // Table information
     private static final String CREATE_SCORE_TABLE = "CREATE TABLE " + SCORE_TABLE + " (" +
             SCORE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             SCORE_USERNAME + " TEXT, " +
             SCORE_SCORE + " TEXT, " +
-            SCORE_DATESCORE + " TEXT " +
+            SCORE_DATESCORE + " TEXT, " +
+            SCORE_TIME + " TEXT " +
             ");";
 
     private Context context;

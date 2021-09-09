@@ -1,52 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              app:layoutDescription="@xml/leaderboards_item_scene" android:orientation="vertical"
-              android:id="@+id/llLeaderboardsItem" android:background="@drawable/item"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llLeaderboardsItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item"
+    android:orientation="vertical"
+    app:layoutDescription="@xml/leaderboards_item_scene">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:id="@+id/clItem"
-            android:layout_weight="1">
+        android:id="@+id/clItem"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <TextView
-                android:text="Username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/tvItemUsername"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="24sp"
-                android:fontFamily="@font/roboto" android:textColor="#FFFFFF"
-                app:layout_constraintStart_toEndOf="@+id/tvItemRank" android:layout_marginStart="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:id="@+id/tvItemUsername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:fontFamily="@font/roboto"
+            android:minEms="7"
+            android:text="Username"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvItemRank"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-                android:text="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/tvItemRank"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="16dp" android:textSize="24sp"
-                android:fontFamily="@font/roboto_black" android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:id="@+id/tvItemRank"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="1"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-                android:text="53"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/tvItemScore"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="24sp"
-                android:fontFamily="@font/roboto" app:layout_constraintStart_toEndOf="@+id/tvItemUsername"
-                android:layout_marginStart="150dp"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:id="@+id/tvItemScore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:gravity="left"
+            android:text="53"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvItemUsername"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/tvItemUsername"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemUsername" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

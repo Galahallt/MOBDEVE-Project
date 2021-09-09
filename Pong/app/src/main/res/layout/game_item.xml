@@ -20,18 +20,23 @@
                 android:layout_marginStart="16dp" android:textSize="24sp"
                 android:fontFamily="@font/roboto" android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toTopOf="@+id/divider5"/>
+
         <TextView
-                android:text="53"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/tvGameItemScore"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="24sp"
-                android:fontFamily="@font/roboto"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/divider5" android:layout_marginStart="150dp"
-                app:layout_constraintStart_toEndOf="@+id/tvGameItemDate"
-        />
+            android:id="@+id/tvGameItemScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:text="53"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvGameItemDate"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <View
                 android:id="@+id/divider5"
                 android:layout_width="match_parent"

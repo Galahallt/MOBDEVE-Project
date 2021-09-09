@@ -18,6 +18,9 @@ public interface PongDAO {
     // gets user's amount of games
     int getTotalGames(String user);
 
+    // gets user's highest score
+    int getUserHighestScore(String user);
+
     // gets all users' highest scores
     ArrayList<ScoreModel> getAllUserHighestScore();
 }
