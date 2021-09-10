@@ -35,10 +35,17 @@ public class LBProfile extends AppCompatActivity {
         this.lbProfAdapter = new LBProfileAdapter(LBProfile.this, data);
         this.dbHelper = new PongDAOSQLImpl(this);
 
-        // Set user
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        // Set user
+        Bundle extras = getIntent().getExtras();
         TextView user = (TextView)findViewById(R.id.tvProfileUsername);
-        String username = sp.getString(KEYS.USER_STRING.name(), "username");
+        String username;
+        if (extras == null) {
+            username = sp.getString(KEYS.USER_STRING.name(), "username");
+        } else {    // Visiting from Leaderboards
+            username = extras.getString("VISITING_USER");
+        }
         user.setText(username + "'s Page");
 
         // Set games played
@@ -77,5 +84,10 @@ public class LBProfile extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Hide Logout button if visiting
+        if (extras != null) {
+            btnLogout.setVisibility(View.GONE);
+        }
     }
 }

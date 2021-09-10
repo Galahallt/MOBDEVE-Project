@@ -1,11 +1,13 @@
 package com.mobdeve.s14.espiritu.finez.perez.project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.s14.espiritu.finez.perez.project.dao.ScoreModel;
@@ -21,12 +23,28 @@ public class LBAdapter extends RecyclerView.Adapter<LBAdapter.ViewHolder> {
         private TextView tvItemUser;
         private TextView tvItemScore;
 
+        private ConstraintLayout clItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvItemRank = itemView.findViewById(R.id.tvItemRank);
             tvItemUser = itemView.findViewById(R.id.tvItemUsername);
             tvItemScore = itemView.findViewById(R.id.tvItemScore);
+
+            clItem = itemView.findViewById(R.id.clItem);
+            clItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TextView vUser = v.findViewById(R.id.tvItemUsername);
+                    String username = String.valueOf(vUser.getText());
+                    Context context = v.getContext();
+
+                    Intent i = new Intent(context, LBProfile.class);
+                    i.putExtra("VISITING_USER", username);
+
+                    context.startActivity(i);
+                }
+            });
         }
 
         public void bindData(ScoreModel score, int rank) {
