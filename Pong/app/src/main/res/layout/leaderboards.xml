@@ -18,13 +18,18 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="299dp"
-            android:layout_height="493dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/rvLeaderboads" android:background="#202735" app:layout_constraintVertical_bias="0.913"
-            app:layout_constraintHorizontal_bias="0.508" app:layout_constraintBottom_toTopOf="@+id/ibLeaderboardsBack"/>
+        android:id="@+id/rvLeaderboads"
+        android:layout_width="299dp"
+        android:layout_height="493dp"
+        android:background="@drawable/item_border"
+        app:layout_constraintBottom_toTopOf="@+id/ibLeaderboardsBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+
     <TextView
             android:text="Leaderboards"
             android:layout_width="wrap_content"

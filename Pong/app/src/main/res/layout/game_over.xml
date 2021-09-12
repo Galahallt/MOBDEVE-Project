@@ -27,6 +27,7 @@
         android:text="Your score: 142"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvGameOver" />
@@ -35,16 +36,15 @@
         android:id="@+id/ibRetry"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="108dp"
         android:adjustViewBounds="true"
         android:padding="12dp"
         android:scaleType="fitCenter"
         app:backgroundTint="#363D49"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ibGameOverHome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvYourScore"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.402"
         app:srcCompat="@drawable/reload"
         app:tint="#9B9FA4" />
 
@@ -53,27 +53,68 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="108dp"
         android:adjustViewBounds="true"
         android:padding="12dp"
         android:scaleType="fitCenter"
         app:backgroundTint="#363D49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toEndOf="@+id/ibRetry"
         app:layout_constraintTop_toBottomOf="@+id/tvYourScore"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.402"
         app:srcCompat="@drawable/home"
         app:tint="#9B9FA4" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGameOver"
-        android:layout_width="344dp"
-        android:layout_height="248dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="299dp"
+        android:layout_height="298dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/item_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleUsername3" />
+
+    <TextView
+        android:id="@+id/tvTitleUsername3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Username"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleRank3"
+        app:layout_constraintTop_toBottomOf="@+id/tvGameOver" />
+
+    <TextView
+        android:id="@+id/tvTitleRank3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Rank"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGameOver" />
+
+    <TextView
+        android:id="@+id/tvTitleScore3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Hi-Score"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.269"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleUsername3"
+        app:layout_constraintTop_toBottomOf="@+id/tvGameOver" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

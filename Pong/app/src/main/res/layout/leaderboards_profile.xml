@@ -90,6 +90,7 @@
             android:fontFamily="@font/roboto_medium"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/item_border"
         android:id="@+id/rvHistory"
         android:layout_width="336dp"
         android:layout_height="284dp"

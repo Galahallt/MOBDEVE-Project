@@ -223,12 +223,12 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void handleCollision(Player paddle, Ball gBall) {
-        gBall.vel_y = -gBall.vel_y * 1.35f;
+        gBall.vel_y = -gBall.vel_y * 1.15f;
         if (paddle == pPaddle) {
             gBall.cy = pPaddle.bounds.top - gBall.getRadius();
         } else if (paddle == oPaddle) {
             gBall.cy = oPaddle.bounds.bottom + gBall.getRadius();
-            PADDLE_SPEED = PADDLE_SPEED * 1.05f;
+            PADDLE_SPEED = PADDLE_SPEED * 1.15f;
         }
     }
 
